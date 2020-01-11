@@ -61,6 +61,21 @@ router.patch('/:excerciseId',async(req,res)=>{
     }   
 })
 
+router.route('/update/:id').post((req, res) => {
+    Excercise.findById(req.params.id)
+      .then(excercise => {
+        excercise.username = req.body.username;
+        excercise.description = req.body.description;
+        excercise.duration = Number(req.body.duration);
+        excercise.date = Date.parse(req.body.date);
+  
+        excercise.save()
+          .then(() => res.json('Exercise updated!'))
+          .catch(err => res.status(400).json('Error: ' + err));
+      })
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
+
 //Delete Post
 router.delete('/:excerciseId',async(req,res)=>{
     try{
