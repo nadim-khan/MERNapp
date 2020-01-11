@@ -3,6 +3,7 @@ const mongoose=require('mongoose');
 const app=express();
 const bodyParser=require('body-parser');
 const cors=require('cors');
+const path=require('path');
 
 require('dotenv/config');
 
@@ -39,6 +40,12 @@ app.get('/',(req,res)=>{
     res.send("We are on home");
 })
 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('../build'));
+    app.get('*',(req,res)=>{
+        res.send(); ///relative path
+    })
+}
 app.listen(port,() => {
     console.clear()
     console.log("\n**************************************\n \t App Logs   \n\n**************************************");
