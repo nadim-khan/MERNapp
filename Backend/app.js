@@ -7,7 +7,7 @@ const cors=require('cors');
 require('dotenv/config');
 
 
-port=3000;
+port=process.env.port||5000;
 
 var currentdate = new Date();
 var date = "Last Sync: " + currentdate.getDay() + "/" + currentdate.getMonth() 
@@ -29,8 +29,10 @@ mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true },(err)=>{
 //Middlewares (executes when specific routes hit)
 app.use(bodyParser.json());
 //(Import routes)
-const postsRoute=require('./routes/posts');
-app.use('/posts',postsRoute)
+const excercisesRoute=require('./routes/excercises');
+const usersRoute=require('./routes/users');
+app.use('/excercises',excercisesRoute);
+app.use('/users',usersRoute);
 
 //ROUTES
 app.get('/',(req,res)=>{
