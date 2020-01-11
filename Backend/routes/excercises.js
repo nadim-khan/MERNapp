@@ -3,27 +3,27 @@ const express=require('express');
 const router=express.Router();
 const Excercise=require('../models/Excercise.model')
 
-//Gets all the POSTS
+//Gets all the Excercise
 router.get('/',async(req,res)=>{
     try{
-        const posts= await Excercise.find();
-        res.json(posts)
-        console.log('\n ==> Request for All the excercise : ',Excercise)
+        const Excercises= await Excercise.find();
+        res.json(Excercises)
+        console.log('\n ==> Request for All the excercise : ',Excercises)
     }catch(err){
         res.json({message:err});
     }
 });
-//Gets a specific post
+//Gets a specific Excercise
 router.get('/:excerciseId',async(req,res)=>{
     try{
-        const excerciseById= await Post.findById(req.params.excerciseId);
+        const excerciseById= await Excercise.findById(req.params.excerciseId);
         res.json(excerciseById);
-        console.log('\n ==> Reques for post with ID [ '+req.params.excerciseId+' ] Required Post : ',excerciseById)
+        console.log('\n ==> Reques for Excercise with ID [ '+req.params.excerciseId+' ] Required Excercise : ',excerciseById)
     }catch(err){
         res.json({message:err});
     }
 });
-//Submits a the POSTS
+//Submits a the Excercise
 router.post('/add',async(req,res)=>{
   const excercise= new Excercise({
       username:req.body.username,
@@ -64,8 +64,9 @@ router.patch('/:excerciseId',async(req,res)=>{
 //Delete Post
 router.delete('/:excerciseId',async(req,res)=>{
     try{
-        const delPost=await Post.findByIdAndRemove({_id:req.params.excerciseId});
-        res.json(delPost);
+        const delExcercise=await Excercise.findByIdAndRemove({_id:req.params.excerciseId});
+        res.json(delExcercise);
+        console.log('\n ==> Excercise Deleted : ',delExcercise)
     }catch(err){
         res.json({message:err})
     }

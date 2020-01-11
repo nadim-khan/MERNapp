@@ -7,7 +7,7 @@ router.get('/',async(req,res)=>{
     try{
         const users= await User.find();
         res.json(users)
-        console.log('\n ==> Request for All the posts : ',users)
+        console.log('\n ==> Request for All the Users : ',users)
     }catch(err){
         res.json({message:err});
     }
@@ -15,9 +15,9 @@ router.get('/',async(req,res)=>{
 
 router.get('/:userId',async(req,res)=>{
     try{
-        const userById= await Post.findById(req.params.userId);
+        const userById= await User.findById(req.params.userId);
         res.json(userById);
-        console.log('\n ==> Reques for post with ID [ '+req.params.userId+' ] Required Post : ',userById)
+        console.log('\n ==> Reques for User with ID [ '+req.params.userId+' ] Required User : ',userById)
     }catch(err){
         res.json({message:err});
         console.log({message:err})
@@ -59,8 +59,9 @@ router.patch('/:userId',async(req,res)=>{
 
 router.delete('/:userId',async(req,res)=>{
     try{
-        const delUser=await Post.findByIdAndRemove({_id:req.params.userId});
+        const delUser=await User.findByIdAndRemove({_id:req.params.userId});
         res.json(delUser);
+        console.log('\n ==> User Deleted : ',delUser)
     }catch(err){
         res.json({message:err})
         console.log({message:err})
