@@ -8,7 +8,7 @@ router.get('/',async(req,res)=>{
     try{
         const Excercises= await Excercise.find();
         res.json(Excercises)
-        console.log('\n ==> Request for All the excercise : ',Excercises)
+        console.log('\n ==> Request for All the Excercise : ',Excercises)
     }catch(err){
         res.json({message:err});
     }
