@@ -19,8 +19,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "serverStart":"cd Backend && npm start",
-    "appStart": "concurrently \"npm run start\" \"npm run serverStart\"" ,
+    "serverStart": "cd Backend && npm start",
+    "appStart": "concurrently \"npm run start\" \"npm run serverStart\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
