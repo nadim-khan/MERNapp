@@ -18,7 +18,7 @@ var date = "Last Sync: " + currentdate.getDay() + "/" + currentdate.getMonth()
 
 
 //DB connection
-mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true },(err)=>{
+mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true, useUnifiedTopology: true },(err)=>{
     if(!err){
         console.log("\n["+date+"] - Succesfully connected to DB ["+process.env.DB_CONNECTION+"] ");
     }else{
